@@ -1,0 +1,35 @@
+.collage-frame {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.visible-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hidden-images {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 300%; /* Adjust based on number of images */
+}
+
+.hidden-image {
+    width: 33.33%; /* Adjust based on number of images */
+    height: 100%;
+    object-fit: cover;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+}

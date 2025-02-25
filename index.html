@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/me\ and\ flower.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .nav-link {
+            color: #ffd700 !important; /* Change to your desired color */
+            font-size: 1.2rem;
+            margin: 0 15px;
+            transition: all 0.3s;
+        }
+        .nav-link:hover {
+            color: #ff4500 !important; /* Change hover color */
+            transform: scale(1.1);
+        }
+        .date-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .date-card:hover {
+            transform: translateY(-5px);
+        }
+        .countdown {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .date-label {
+            font-size: 1rem;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+        .date-value {
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .countdown-unit {
+            display: inline-block;
+            padding: 3px 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            margin: 0 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation remains the same -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-white" href="#">Our Story</a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 animate__animated animate__fadeInDown mb-4">Our Love Story</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="date-card animate__animated animate__fadeInLeft">
+                        <h3>Our Anniversary</h3>
+                        <div class="date-label">September 8, 2025</div>
+                        <div id="anniversary-countdown" class="countdown"></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="date-card animate__animated animate__fadeInRight">
+                        <h3>Our Birthdays</h3>
+                        <div class="date-label">His Birthday</div>
+                        <div class="date-value">February 2, 2002</div>
+                        <div id="birthday1-countdown" class="countdown"></div>
+                        <div class="date-label mt-4">Her Birthday</div>
+                        <div class="date-value">September 30, 2003</div>
+                        <div id="birthday2-countdown" class="countdown"></div>
+                    </div>
+                </div>
+            </div>
+            <a href="gallery.html" class="btn btn-outline-light btn-lg mt-4 animate__animated animate__fadeInUp">View Our Memories</a>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const anniversaryDate = new Date('September 8, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = anniversaryDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+    <!-- Update the script section -->
+    <script>
+        function getNextBirthday(month, day) {
+            const now = new Date();
+            let birthday = new Date(now.getFullYear(), month - 1, day);
+            if (birthday < now) {
+                birthday = new Date(now.getFullYear() + 1, month - 1, day);
+            }
+            return birthday;
+        }
+    
+        function formatCountdown(distance) {
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+            return `
+                <span class="countdown-unit">${days}d</span>
+                <span class="countdown-unit">${hours}h</span>
+                <span class="countdown-unit">${minutes}m</span>
+                <span class="countdown-unit">${seconds}s</span>
+            `;
+        }
+    
+        function updateCountdowns() {
+            // Anniversary countdown
+            const anniversaryDate = new Date('September 8, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const anniversaryDistance = anniversaryDate - now;
+            document.getElementById('anniversary-countdown').innerHTML = formatCountdown(anniversaryDistance);
+    
+            // Birthday countdowns
+            const birthday1Distance = getNextBirthday(2, 2).getTime() - now;
+            const birthday2Distance = getNextBirthday(9, 30).getTime() - now;
+            
+            document.getElementById('birthday1-countdown').innerHTML = formatCountdown(birthday1Distance);
+            document.getElementById('birthday2-countdown').innerHTML = formatCountdown(birthday2Distance);
+        }
+    
+        setInterval(updateCountdowns, 1000);
+        updateCountdowns();
+    </script>
+</body>
+</html>
